@@ -1,0 +1,211 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900);
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700,300,200);
+
+
+
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  line-height: 1.6em;
+  font-weight: 300;
+  color: #555;
+  background-color: #000;
+}
+
+p {
+  font-size:1.5em;
+}
+
+
+
+
+.background {
+  background: 
+  background-size: 100% auto;
+  position: fixed;
+  width: 100%;
+  height: 150%;
+  top: 0;
+  left: 0;
+  z-index: -1
+}
+.background img{
+height: 100%;  
+width: auto;
+}
+
+
+.mainContent {
+  margin-left: 20%;
+  margin-right: 20%;
+
+  background: #E2E2E2;
+  box-shadow:  3px 3px 3px 3px rgba(0, 0, 0, 0.25);
+}
+.mainContent>header {
+height: 100px;
+}
+
+/*
+Nav bar header :
+*/
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #353672;
+}
+
+li {
+  float: left;
+  vertical-align: middle;
+}
+
+li a {
+  display: block;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  padding: 30px 30px;
+  text-decoration: none;
+  background-color: inherit;
+  transition: background-color 0.2s 0s ease;
+}
+
+li a:hover {
+  background-color: #115;
+  transition: background-color 0.2s 0s ease;
+}
+
+#logo{
+  display: block;  
+  height: 50px;
+  padding: 15px 30px;
+
+}
+
+
+.joinButton {
+  float: right;
+}
+
+.joinButton a{
+  margin-top: 15px;
+  margin-right: 20px;
+}
+
+
+
+
+
+
+/*
+Articles
+*/
+
+
+article{
+padding-left: 50px;
+padding-right: 50px;
+}
+article>header {
+  border-bottom: solid 1px #e0e0e0;
+  margin: 0 0 20px 0;
+}
+.pageTitle,
+
+
+
+.pageSubTitle {
+}
+
+.pageTitle {
+  color: #000C51;
+  font-size: 2.5em;
+  font-weight: 700;
+  line-height: 2em;
+}
+
+.pageSubTitle {
+  text-transform: uppercase;
+  margin-bottom: 0.5em;
+  font-size: 1.4em;
+  font-weight: 300;
+    font-family: 'Titillium', sans-serif;
+  color: #333;
+}
+
+section{
+background-color: #fff;
+border-radius: 5px;
+margin-bottom: 30px;
+padding: 20px;
+text-align: justify;
+}
+
+section p{
+}
+
+
+
+
+.blueButton{
+
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+    color: white;
+  font-size: 20px;
+  background-color: #525899;
+  transition: background-color 0.2s 0s ease;
+
+  padding: 13px 30px;  
+  border-radius: 5px;
+}
+
+.blueButton:hover{
+  background-color: #67A;
+  transition: background-color 0.2s 0s ease;
+}
+
+
+.buttonBar{
+  margin: auto;
+  width: 50%;
+  padding-top: 20px;
+  padding-left: 0%;
+  padding-right: 0%;
+}
+
+
+
+#mapid { 
+    margin-top: 15px;
+  height: 300px; 
+width: 100%;
+
+}
+
+
+.formline{
+  width: 100%;
+   display: flex;
+  justify-content: space-around;
+}
+
+
+
+.formline input{
+  min-height: 30px;
+  width: 45%;
+  display: inline-block;  
+
+}
+
+
+
+
