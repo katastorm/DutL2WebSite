@@ -1,0 +1,123 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+	<meta charset="UTF-8">
+	<title>Rechercher ma formation </title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+	<link rel="stylesheet" href="./style.css">
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+	integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+	crossorigin=""/>
+	<!-- Make sure you put this AFTER Leaflet's CSS -->
+	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+	integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+	crossorigin=""></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script  src="./script.js"></script>
+
+
+
+</head>
+
+
+<body>
+	<div class="background">
+		<img src="images/amphi.jpg" alt="Amphi de rentrée pour les élèves de l'Ecole polytechnique">
+	</div>
+
+
+	<div class="mainContent">
+
+		<header>
+			<ul>
+				<li> <img src="images/book_icon.png" id="logo"  alt="Le logo de la boite">
+				</li>
+				<li><a class="active" href="#home">Home</a></li>
+				<li><a href="#news">News</a></li>
+				<li><a href="#contact">Contact</a></li>
+				<li class="joinButton"><a href="#join" class="blueButton">Login</a></li>
+			</ul>
+		</header>
+
+
+
+
+		<article>
+			<header>
+				<h1 class="pageTitle">Mon avenir ?</h1>
+				<h2 class="pageSubTitle">C'est plus facile avec LOGO !</h2>
+			</header>
+			<section id="beforeSearch">
+				<p>Bien choisir son école, c'est primordial ! Logo vous aide dans vos recherches grâce à plusieurs services en lignes. Commencez dés maintenant sans inscription : cliquez sur le bouton ci-dessous afin de trouver l'école faite pour vous ! 
+				</p>
+
+				<div class="buttonBar">
+					<a class="blueButton" id="openSearchPannel">Commencer mes recherches</a>
+				</div>
+			</section>
+
+
+
+
+
+			<section id="searchZone">
+				<p>Rechercher les ecoles :</p><br>
+				<form method="post">
+					<div class="formline">
+						<input list="search_niv" placeholder="Niveau">
+						<datalist id="search_niv">
+						</datalist>
+						<input list="search_sect" placeholder="Secteur">
+						<datalist id="search_sect">
+						</datalist>
+					</div>
+					<br>
+
+
+					<div class="formline">
+						<input list="search_reg" placeholder="Region">
+						<datalist id="search_reg">
+						</datalist>
+						<input list="search_dip" placeholder="Diplome">
+						<datalist id="search_dip">
+						</datalist> 
+
+					</div>
+				</form>
+
+				<div class="buttonBar" id="searchButton">
+					<a class="blueButton">Rechercher</a>
+				</div>
+				<div id="mapid">
+				</div>
+			</section>
+
+		</article>
+
+
+
+
+		<article>
+			<h1 class="pageTitle">Actualités</h1>
+
+			<section class="twitter-wrapper">
+				<div>
+					<a class="twitter-timeline" data-width="100%" data-theme="dark" data-link-color="#cce" href="https://twitter.com/upemlv?lang=en">Tweets by PSG_inside</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+				</div>
+				<div>
+					<a class="twitter-timeline" data-width="100%" data-theme="dark" data-link-color="#cce" href="https://twitter.com/iut_la?lang=en">Tweets by PSG_inside</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+				</div>
+			</section>
+		</article>
+	</div>
+
+
+
+</body>
+
+</html>
