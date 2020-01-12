@@ -17,6 +17,10 @@ var appInit = false;
 
 $(document).ready(function(){
 
+/*
+	mymap.on('click', function(e) {
+	 AddMapMarker(e.latlng.lat, e.latlng.lng);
+	});*/
 
 	//Partie carte :
 	var mymap = L.map('mapid').setView([48.835, 2.348], 8);
@@ -28,13 +32,6 @@ $(document).ready(function(){
 	}).addTo(mymap);
 
 	var markerGroup = L.layerGroup().addTo(mymap);
-
-/*
-	mymap.on('click', function(e) {
-	 AddMapMarker(e.latlng.lat, e.latlng.lng);
-	});*/
-
-
 
 //Utilitaires pour la carte
 function AddMapMarker(lat, long, name, url){
@@ -57,8 +54,6 @@ function onClickMarker(e) {
 
 
 
-
-
 	//Transition du boutton "Commencer mes recherches"
 	$("#searchButton").click(	SendRequest);
 	$('#searchZone').fadeOut(0);
@@ -69,21 +64,23 @@ function onClickMarker(e) {
    });
 	});
 
-
 	//Remplissage des choix des champs
 	function AddOptionElement(optionTag, facetToAdd){
 		theDiv = document.getElementById(optionTag);
 		var option = document.createElement("option");
 		option.value = facetToAdd["name"];
 		theDiv.appendChild( option);
-	}
+}
+
+
+
+
 
 
 //Automatique, au démarage
 SendRequest();
 
 function SendRequest(){
-
 //Recuperation des critères de recherche
 var secteur = document.getElementById("search_sect").previousSibling.previousSibling.value;
 var diplome = document.getElementById("search_dip").previousSibling.previousSibling.value;
@@ -115,6 +112,14 @@ $.getJSON("https://data.enseignementsup-recherche.gouv.fr/api/records/1.0/search
 //Remplissage des champs automatiques (à faire seulement 1 fois au démarage)
 if(!appInit){
 	appInit = true;
+
+//Trier les résultats
+for (var i = 0; i < data["facet_groups"].length; i++) {
+	data["facet_groups"][i]["facets"].sort(function(a,b){
+		return a["name"].localeCompare(b["name"]);
+	});	
+}
+
 //"niveau_lib"
 jQuery.each(data["facet_groups"][6]["facets"], function() {
 	AddOptionElement("search_niv", this);
