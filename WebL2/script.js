@@ -55,7 +55,7 @@ function onClickMarker(e) {
 
 
 	//Transition du boutton "Commencer mes recherches"
-	$("#searchButton").click(	SendRequest);
+	$("#searchButton").click(() => SendRequest(50) );
 	$('#searchZone').fadeOut(0);
 	$('#openSearchPannel').click(function(e){    
 		$('#beforeSearch').fadeOut('fast', function(){
@@ -72,15 +72,18 @@ function onClickMarker(e) {
 		theDiv.appendChild( option);
 }
 
-
+let resultTextCnt = document.getElementById("result_cnt");
+let moreResultText = document.getElementById("more_results");
+$("#more_results").click(() => SendRequest(250) );
 
 
 
 
 //Automatique, au démarage
-SendRequest();
+SendRequest(50);
 
-function SendRequest(){
+
+function SendRequest(maxResultCnt){
 //Recuperation des critères de recherche
 var secteur = document.getElementById("search_sect").previousSibling.previousSibling.value;
 var diplome = document.getElementById("search_dip").previousSibling.previousSibling.value;
@@ -93,7 +96,7 @@ conditions += (region =="")?"":"&refine.reg_etab_lib="+region;
 conditions += (niveau =="")?"":"&refine.niveau_lib="+niveau;
 
 //Envoie de la première requète
-$.getJSON("https://data.enseignementsup-recherche.gouv.fr/api/records/1.0/search/?dataset=fr-esr-principaux-diplomes-et-formations-prepares-etablissements-publics&rows=50&sort=-rentree_lib&facet=etablissement_lib&facet=niveau_lib&facet=diplome_lib&facet=gd_disciscipline_lib&facet=sect_disciplinaire_lib&facet=reg_etab_lib&facet=dep_ins_lib&facet=com_etab_lib&facet=com_etab"+conditions, function(data) {
+$.getJSON("https://data.enseignementsup-recherche.gouv.fr/api/records/1.0/search/?dataset=fr-esr-principaux-diplomes-et-formations-prepares-etablissements-publics&rows="+maxResultCnt+"&sort=-rentree_lib&facet=etablissement_lib&facet=niveau_lib&facet=diplome_lib&facet=gd_disciscipline_lib&facet=sect_disciplinaire_lib&facet=reg_etab_lib&facet=dep_ins_lib&facet=com_etab_lib&facet=com_etab"+conditions, function(data) {
 
 	ClearMinimap();
 
@@ -148,14 +151,23 @@ for (var i=1 ; i <  records.length ; i++){
 	searchById += " OR " + records[i]["fields"]["com_etab"];
 }
 
+
+moreResultText.hidden =  records.length < maxResultCnt;
+	console.log( records.length + " vs " + maxResultCnt);
+
 //Envoie de la seconde requête et placement des marqueurs
-$.getJSON("https://data.enseignementsup-recherche.gouv.fr/api/records/1.0/search/?dataset=fr-esr-principaux-etablissements-enseignement-superieur&rows=50"+searchById, function(etablissements) {
+$.getJSON("https://data.enseignementsup-recherche.gouv.fr/api/records/1.0/search/?dataset=fr-esr-principaux-etablissements-enseignement-superieur&rows="+maxResultCnt+searchById, function(etablissements) {
 	records = etablissements["records"]; 
 	for (var i=0 ; i <  records.length ; i++)
 	{
 		let pos = records[i]["geometry"]["coordinates"];
 		AddMapMarker(pos[1], pos[0], records[i]["fields"]["uo_lib"], records[i]["fields"]["url"]);
 	}
+
+
+	resultTextCnt.innerHTML = records.length;
+
+
 });
 });
 }

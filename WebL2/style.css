@@ -26,7 +26,6 @@ cursor: pointer;
 }
 
 .background {
-  background: 
   background-size: 100% auto;
   position: fixed;
   width: 100%;
@@ -44,6 +43,8 @@ width: auto;
 .mainContent {
   margin-left: 20%;
   margin-right: 20%;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
 
   background: #E2E2E2;
   box-shadow:  3px 3px 3px 3px rgba(0, 0, 0, 0.25);
@@ -51,6 +52,17 @@ width: auto;
 .mainContent>header {
 height: 100px;
 }
+/*
+footer :
+*/
+.mainContent>footer {
+  margin-left: 5%;
+  margin-right: 5%;
+  display: flex;
+justify-content: space-between;
+  }
+
+
 
 /*
 Nav bar header :
@@ -190,6 +202,7 @@ display: flex;
 
 #mapid { 
   margin-top: 15px;
+  margin-bottom: 15px;
   height: 550px;   
 width: 100%;
 
@@ -220,4 +233,8 @@ width: 49%;
 display: inline-block;
 }
 
-
+.fake_link {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}

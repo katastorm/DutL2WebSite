@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Rechercher ma formation </title>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 	<link rel="stylesheet" href="./style.css">
 
@@ -19,12 +19,10 @@
 	crossorigin=""></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 	<script  src="./script.js"></script>
-
-
-
 </head>
 
 
+	
 <body>
 	<div class="background">
 		<img src="images/amphi.jpg" alt="Amphi de rentrée pour les élèves de l'Ecole polytechnique">
@@ -43,6 +41,7 @@
 				<li class="joinButton"><a href="#join" class="blueButton">Login</a></li>
 			</ul>
 		</header>
+
 
 
 
@@ -90,11 +89,17 @@
 					</div>
 				</form>
 
-				<div class="buttonBar" id="searchButton">
-					<a class="blueButton">Rechercher</a>
-				</div>
+				<div class="buttonBar" id="searchButton">	
+					<a class="blueButton">Rechercher</a>	
+				</div>										
 				<div id="mapid">
 				</div>
+
+				<p id="result_cnt">0</p>
+				<p>Résultats trouvés</p>
+				<span class="fake_link" id="more_results">Plus de résultats</span>
+	
+			
 			</section>
 
 		</article>
@@ -107,17 +112,20 @@
 
 			<section class="twitter-wrapper">
 				<div>
-					<a class="twitter-timeline" data-width="100%" data-theme="dark" data-link-color="#cce" href="https://twitter.com/upemlv?lang=en">Tweets by PSG_inside</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+					<a class="twitter-timeline" data-width="100%" data-theme="dark" data-link-color="#cce" href="https://twitter.com/upemlv?lang=en">Tweets by PSG_inside</a> <script async src="https://platform.twitter.com/widgets.js"></script>
 				</div>
 				<div>
-					<a class="twitter-timeline" data-width="100%" data-theme="dark" data-link-color="#cce" href="https://twitter.com/iut_la?lang=en">Tweets by PSG_inside</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+					<a class="twitter-timeline" data-width="100%" data-theme="dark" data-link-color="#cce" href="https://twitter.com/iut_la?lang=en">Tweets by PSG_inside</a> <script async src="https://platform.twitter.com/widgets.js"></script>
 				</div>
 			</section>
 		</article>
+
+
+		<footer>
+			<a>IUT-MLV 2020</a>
+			<a href="https://github.com/katastorm/DutL2WebSite" target="blank">Pour en savoir plus</a>
+		</footer>
 	</div>
-
-
-
 </body>
 
 </html>
