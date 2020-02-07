@@ -1,5 +1,6 @@
 
 
+let apiKey = "268989ff7daeb79e38a9d650b97a61c9bcf6cdbd5d74a378022416a5";
 
 
 $(window).scroll(function(e){
@@ -96,7 +97,7 @@ conditions += (region =="")?"":"&refine.reg_etab_lib="+region;
 conditions += (niveau =="")?"":"&refine.niveau_lib="+niveau;
 
 //Envoie de la première requète
-$.getJSON("https://data.enseignementsup-recherche.gouv.fr/api/records/1.0/search/?dataset=fr-esr-principaux-diplomes-et-formations-prepares-etablissements-publics&rows="+maxResultCnt+"&sort=-rentree_lib&facet=etablissement_lib&facet=niveau_lib&facet=diplome_lib&facet=gd_disciscipline_lib&facet=sect_disciplinaire_lib&facet=reg_etab_lib&facet=dep_ins_lib&facet=com_etab_lib&facet=com_etab"+conditions, function(data) {
+$.getJSON("https://data.enseignementsup-recherche.gouv.fr/api/records/1.0/search/?dataset=fr-esr-principaux-diplomes-et-formations-prepares-etablissements-publics&X-API-KEY="+apiKey+"&rows="+maxResultCnt+"&sort=-rentree_lib&facet=etablissement_lib&facet=niveau_lib&facet=diplome_lib&facet=gd_disciscipline_lib&facet=sect_disciplinaire_lib&facet=reg_etab_lib&facet=dep_ins_lib&facet=com_etab_lib&facet=com_etab"+conditions, function(data) {
 
 	ClearMinimap();
 
@@ -153,20 +154,17 @@ for (var i=1 ; i <  records.length ; i++){
 
 
 moreResultText.hidden =  records.length < maxResultCnt;
-	console.log( records.length + " vs " + maxResultCnt);
+//console.log( records.length + " vs " + maxResultCnt);
 
 //Envoie de la seconde requête et placement des marqueurs
-$.getJSON("https://data.enseignementsup-recherche.gouv.fr/api/records/1.0/search/?dataset=fr-esr-principaux-etablissements-enseignement-superieur&rows="+maxResultCnt+searchById, function(etablissements) {
+$.getJSON("https://data.enseignementsup-recherche.gouv.fr/api/records/1.0/search/?dataset=fr-esr-principaux-etablissements-enseignement-superieur&X-API-KEY="+apiKey+"&rows="+maxResultCnt+searchById, function(etablissements) {
 	records = etablissements["records"]; 
 	for (var i=0 ; i <  records.length ; i++)
 	{
 		let pos = records[i]["geometry"]["coordinates"];
 		AddMapMarker(pos[1], pos[0], records[i]["fields"]["uo_lib"], records[i]["fields"]["url"]);
 	}
-
-
 	resultTextCnt.innerHTML = records.length;
-
 
 });
 });
