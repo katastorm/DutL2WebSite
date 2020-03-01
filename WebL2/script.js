@@ -35,9 +35,20 @@ $(document).ready(function(){
 	var markerGroup = L.layerGroup().addTo(mymap);
 
 //Utilitaires pour la carte
-function AddMapMarker(lat, long, name, url){
+function AddMapMarker(lat, long, fields){
 	var marker =	L.marker([lat, long], {}).addTo(markerGroup);
-	marker.bindPopup(name + "<br><a target=\"_blank\" href="+url+">Acceder au site web</a>");
+
+
+	var space = "<br><br>";
+	var name = fields["uo_lib"] + "<br>" +
+		"<a target=\"_blank\" href="+fields["url"]+">Acceder au site web</a>"  + space;	
+	var adresse = (fields["adresse_uai"] == undefined)?"":"Adresse:"+fields["adresse_uai"] + space;
+	var tel = (fields["numero_telephone_uai"] == undefined)?"":"Téléphone:"+fields["numero_telephone_uai"] + space;
+	var wiki = "Page wikidata<br>" +
+				"<a target=\"_blank\" href="+fields["element_wikidata"]+">"+fields["element_wikidata"] + space;
+
+
+	marker.bindPopup(name + adresse + tel + wiki);	
 	marker.on('click', onClickMarker);
 }
 
@@ -48,7 +59,7 @@ function ClearMinimap(){
 function onClickMarker(e) {
 	var popup = e.target.getPopup();
 	var content = popup.getContent();
-	console.log(content);
+	//console.log(content);
 }
 
 
@@ -160,12 +171,13 @@ moreResultText.hidden =  records.length < maxResultCnt;
 $.getJSON("https://data.enseignementsup-recherche.gouv.fr/api/records/1.0/search/?dataset=fr-esr-principaux-etablissements-enseignement-superieur&X-API-KEY="+apiKey+"&rows="+maxResultCnt+searchById, function(etablissements) {
 	records = etablissements["records"]; 
 	for (var i=0 ; i <  records.length ; i++)
-	{
+	{		
 		let pos = records[i]["geometry"]["coordinates"];
-		AddMapMarker(pos[1], pos[0], records[i]["fields"]["uo_lib"], records[i]["fields"]["url"]);
+		//console.log(records[i]);
+		AddMapMarker(pos[1], pos[0], records[i]["fields"]);
 	}
 	resultTextCnt.innerHTML = records.length;
-
+            
 });
 });
 }
