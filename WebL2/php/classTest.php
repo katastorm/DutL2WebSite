@@ -60,15 +60,15 @@ function prt($vars){
 $apiKey = "268989ff7daeb79e38a9d650b97a61c9bcf6cdbd5d74a378022416a5";
 $conditions = "";
 $getPage = false;
-
+$contents = "";
+$data = "";
+$forms = "";
 foreach ($_GET as $key) {
 	if(!empty($key)){
 		$getPage = true;
 		break;
 	}
 }
-
-prt($_GET);
 
 
 if(isset($_GET["etab"]) && $_GET["etab"] != "")
@@ -77,17 +77,20 @@ if(isset($_GET["etab"]) && $_GET["etab"] != "")
 if(isset($_GET["secteur"]) && $_GET["secteur"] != "")
 	$conditions = $conditions . "&refine.sect_disciplinaire_lib=".$_GET["secteur"];
 
-
-
+try{
 	$data = file_get_contents(		
 		"https://data.enseignementsup-recherche.gouv.fr/api/records/1.0/search/?dataset=fr-esr-principaux-diplomes-et-formations-prepares-etablissements-publics&rows=50&sort=-rentree_lib&facet=etablissement_lib&facet=niveau_lib&facet=diplome_lib&facet=gd_disciscipline_lib&facet=sect_disciplinaire_lib&facet=reg_etab_lib&facet=dep_ins_lib&facet=com_etab_lib&X-API-KEY=".$apiKey."&facet=com_ins".$conditions);
+
 	if($data === false) {
 		print("Empty result");
+	}else{
+		$contents = json_decode($data, true);
+		prt($contents );
+		$forms = new FormationList($contents);
 	}
-
-	$contents = json_decode($data, true);
-	prt($contents );
-	$forms = new FormationList($contents);
+} catch (Exception $e) {
+	print("Erreur de connexion avec le support.");
+}
 ?>
 
 
@@ -162,6 +165,7 @@ print('
 
 
   <?php
+  if(!empty($forms))
 	$forms->printAll();
 
   ?>
